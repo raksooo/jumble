@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { useSpace } from '3box-react-hooks';
 import Header from './Header';
 import Dashboard from './Dashboard';
 import Board from './Board';
 
 const App = ({}) => {
-  const space = useSpace('Jumble');
+  const [space, setSpace] = useState(null);
 
   return (
     <Router>
-      <Header space={space} />
+      <Header space={space} setSpace={setSpace} />
 
       <Route path="/" exact render={() => <Dashboard space={space} />} />
       <Route path="/board/:hash" render={() => <Board space={space} />} />
